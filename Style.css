@@ -105,3 +105,9 @@ input {
   background-color: #fff;
   cursor: pointer;
 }
+.cart-order {
+  display: inline-block;
+  max-width: 100px;
+  max-height: 100px;
+  padding: 3px;
+}
