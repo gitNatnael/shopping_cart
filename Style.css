@@ -111,3 +111,19 @@ input {
   max-height: 100px;
   padding: 3px;
 }
+.item-amount {
+  max-width: 60px;
+  margin-bottom: 3px;
+}
+
+#order-form {
+  display: flex;
+  max-width: 40%;
+  max-height: auto;
+  margin-right: 30px;
+}
+#cartList {
+  display: flex;
+  max-width: 60%;
+  max-height: auto;
+}

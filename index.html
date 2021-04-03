@@ -31,33 +31,33 @@
     <div id="cart-section">
       <h2 class="header-order">Order</h2>
       <div class="container">
+          <div id="order-form">
+            <form
+            action="order_confirmation.html"
+            name="orderForm"
+            onsubmit="return validate(this)"
+          >
+            First Namn <br />
+            <input type="text" name="firstName" size="21" /> <br /><br />
+            Last Namn <br />
+            <input type="text" name="lastName" size="21" /> <br /><br />
+            Telephone number <br />
+            <input type="tel" name="telNumber" size="12" /><br /><br />
+            E-post <br />
+            <input type="email" name="email" size="21" /> <br /><br />
+            Delivery adress <br />
+            <input type="text" name="adress" /><br /><br />
+            <input type="submit" value="Send Order" onClick="return validate();" />
+          </form>
+          </div>
           <div id="cartList">
           </div>
       </div>
-      <div class="container">
-        <form
-          action="order_confirmation.html"
-          name="orderForm"
-          onsubmit="return validate(this)"
-        >
-          First Namn <br />
-          <input type="text" name="firstName" size="21" /> <br /><br />
-          Last Namn <br />
-          <input type="text" name="lastName" size="21" /> <br /><br />
-          Telephone number <br />
-          <input type="tel" name="telNumber" size="12" /><br /><br />
-          E-post <br />
-          <input type="email" name="email" size="21" /> <br /><br />
-          Delivery adress <br />
-          <input type="text" name="adress" /><br /><br />
-          <input type="submit" value="Send Order" onClick="return validate();" />
-        </form>
-      </div>
+       <div id="total-price"></div>
       <div class="container">
         <div id="message"></div>
       </div>
     </div>
-
     <script src="script.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
   </body>

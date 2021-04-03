@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Semester Results </title>
+</head>
+<body>
+    <h1> Semester Marks </h1> <br> 
+    <script type = "text/javascript">
+        function checkMarks(total)
+        {
+            document.write("<h1> Final Result !!! </h1><br>");
+            document.write("Total Marks = " + total + "<br><br>");
+            var avg = total / 6.0;
+            document.write("CGPA = " + (avg / 10.0).toFixed(2) + "<br><br>");
+            if(avg >= 90)
+                document.write("Grade = A");
+            else if(avg >= 80)
+                document.write("Grade = B");
+            else if(avg >= 70)
+                document.write("Grade = C");
+            else if(avg >= 60)
+                document.write("Grade = D");
+            else if(avg >= 50)
+                document.write("Grade = Pass");
+            else
+                document.write("Grade = Fail");
+       }
+    </script>
+    <form name = "myform" action = "javascript:checkMarks(Number(s1.value) + Number(s2.value) + Number(s3.value) + Number(s4.value) + Number(s5.value) + Number(s6.value))"/>
+        Semester 1:  <input type = "text" id = "s1"/> <br><br>
+        Semester 2:  <input type = "text" id = "s2"/> <br><br>
+        Semester 3:  <input type = "text" id = "s3"/> <br><br>
+        Semester 4:  <input type = "text" id = "s4"/> <br><br>
+        Semester 5:  <input type = "text" id = "s5"/> <br><br>
+        Semester 6:  <input type = "text" id = "s6"/> <br><br><br>
+        <input type = "submit" value = "Submit"/>
+    </form>
+</body>
+</html>

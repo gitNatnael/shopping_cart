@@ -42,8 +42,9 @@ function cartNumber() {
 }
 
 function onLoadCartNumbers() {
-    document.getElementById('cart-section').style.display= 'none';
-    let productNumbers = localStorage.getItem('cartNumber');
+   if(document.getElementById('cart-section')) document.getElementById('cart-section').style.display= 'none';
+   if(document.getElementById('confirmation')) document.getElementById('confirmation').style.display= 'none';
+   let productNumbers = localStorage.getItem('cartNumber');
     if (productNumbers) {
         document.querySelector('.cart span').textContent = productNumbers;
     } else localStorage.setItem('cartNumber', 0);
@@ -78,25 +79,37 @@ function validate() {
     }
     else {
         localStorage.setItem('cartNumber', 0);
+        localStorage.removeItem('itemsId');
         document.querySelector('.cart span').textContent = 0;
+       /*  document.getElementById('cart-section').style.display= 'none';
+        document.getElementById('output').style.display= 'none'; 
+        document.getElementById('confirmation').style.display= 'block'; */
+        //document.getElementById('cartList').innerHTML= '<h1> Final Result !!! </h1><br>';
         return true;
     }
 }
-
+let itemsInShoppingCart=[];
+let eachItem=[];
 function getCart() {
-    let itemsInShoppingCart=[];
+    
     let productNumbers = localStorage.getItem('cartNumber');
     let itemIds= localStorage.getItem('itemsId')
-    if(itemIds) {
-        itemIds=itemIds.split(",");
-        itemIds.forEach(d=> {
-            let item=products.find(p=> p.id == parseInt(d))
-            if(item) itemsInShoppingCart.push(item);
-          });
-    }
-    if (parseInt(productNumbers) > 0 && itemIds){
+    if(itemIds && parseInt(productNumbers) > 0) {
         document.getElementById('output').style.display= 'none';
         document.getElementById('cart-section').style.display= 'block';
+       /*  itemIds.split(",").forEach(item=>{
+        if(eachItem[item]){
+            eachItem[item]++;
+         }else{
+            eachItem[item] = 1;
+         }
+        });
+        let ids= Object.keys(eachItem); */
+        itemIds.split(",").forEach(d=> {
+            let item=products.find(p=> p.id == parseInt(d))
+            if(item) itemsInShoppingCart.push(item);
+          }); 
+         
          itemsInShoppingCart.forEach(function (item) {
             document.getElementById('cartList').innerHTML += `
             <div class = "cart-order" id="${item.id}">
@@ -105,12 +118,29 @@ function getCart() {
             <p>Price:${item.price}</p> 
             <button  type="btn" class ='add-cart'   
                     onclick="removeCart(${item.id})"   value=${item.id} >Remove</button>            
-              </div>
             </div>`;
         });  
+        let totalPrice=0;
+        itemsInShoppingCart.forEach(function (item) {
+              totalPrice+= item.price
+        });
+        document.getElementById('total-price').innerHTML =  `<p> Total price is: ${totalPrice} </p>`;
     }
 }
-
+ 
+/* 
+ function changeItem(inputId, currentItemAmount){
+    let el=document.getElementById(inputId).getElementsByClassName("item-amount")[0];
+    if(currentItemAmount == eachItem=[inputId] ) console.log('no change');
+    else console.log();
+    el.addEventListener('change', updateValue);
+   
+}
+function updateValue(e) {
+   console.log(e.target.value);
+  } */
+/* let carts = document.querySelectorAll('.cart-order');
+console.log(carts); */
 function removeCart(id) {
      let el=document.getElementById(id);
      el.remove();
